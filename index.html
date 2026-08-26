@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESTET PLASTIC — Клиника пластической хирургии в Махачкале</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --plum-900: #3D1638;
+  --plum-700: #6B3565;
+  --plum-500: #8B4F84;
+  --lilac-300: #D9BFEA;
+  --lilac-100: #F3E8FA;
+  --base: #FFFFFF;
+  --base-warm: #FAF7FB;
+  --ink: #0D0D0D;
+  --ink-80: rgba(13,13,13,0.8);
+  --ink-60: rgba(13,13,13,0.6);
+  --ink-30: rgba(13,13,13,0.3);
+  --ink-10: rgba(13,13,13,0.1);
+  --gold-accent: #C9A96E;
+  --shadow-plum: rgba(61,22,56,0.15);
+  --shadow-plum-lg: rgba(61,22,56,0.25);
+  --glass-bg: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.2);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--base);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { border: none; cursor: pointer; font-family: inherit; }
+ul { list-style: none; }
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Section reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Section heading */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--plum-700);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--ink-60);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  border-radius: 60px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.35s var(--ease-out-quart);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--plum-900);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--plum-700);
+  transform: scale(1.04);
+  box-shadow: 0 12px 40px var(--shadow-plum-lg);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--plum-900);
+  border: 1.5px solid var(--plum-900);
+}
+.btn-outline:hover {
+  background: var(--plum-900);
+  color: #fff;
+  transform: scale(1.04);
+}
+.btn-glass {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+}
+.btn-glass:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.04);
+}
+
+/* ============================================
+   DECORATIVE BLUR BLOBS
+   ============================================ */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.blob-lavender {
+  background: radial-gradient(circle, var(--lilac-300), transparent 70%);
+  opacity: 0.4;
+}
+.blob-plum {
+  background: radial-gradient(circle, var(--plum-700), transparent 70%);
+  opacity: 0.12;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 16px 0;
+  transition: all 0.4s var(--ease-out-quart);
+}
+.navbar.scrolled {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border-bottom: 1px solid rgba(217,191,234,0.3);
+  padding: 10px 0;
+  box-shadow: 0 4px 30px rgba(61,22,56,0.06);
+}
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+.nav-logo-icon {
+  width: 40px; height: 40px;
+  background: var(--plum-900);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+.nav-logo:hover .nav-logo-icon { transform: rotate(-5deg) scale(1.05); }
+.nav-logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #fff;
+  transition: color 0.4s;
+}
+.navbar.scrolled .nav-logo-text { color: var(--plum-900); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.85);
+  transition: color 0.3s;
+  position: relative;
+}
+.navbar.scrolled .nav-links a { color: var(--ink-80); }
+.nav-links a:hover { color: #fff; }
+.navbar.scrolled .nav-links a:hover { color: var(--plum-900); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--lilac-300);
+  transition: width 0.3s var(--ease-out-expo);
+}
+.navbar.scrolled .nav-links a::after { background: var(--plum-900); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-messengers {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.messenger-btn {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.35s var(--ease-out-quart);
+  cursor: pointer;
+}
+.navbar.scrolled .messenger-btn {
+  background: rgba(61,22,56,0.06);
+  border-color: rgba(61,22,56,0.1);
+}
+.messenger-btn:hover {
+  transform: scale(1.12);
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 8px 24px var(--shadow-plum);
+}
+.messenger-btn svg { width: 20px; height: 20px; }
+
+.nav-cta {
+  padding: 10px 24px;
+  font-size: 0.8rem;
+}
+
+/* Burger */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  padding: 8px;
+  z-index: 10;
+}
+.nav-burger span {
+  width: 24px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.navbar.scrolled .nav-burger span { background: var(--ink); }
+.nav-burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-burger.active span:nth-child(2) { opacity: 0; }
+.nav-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(61,22,56,0.97);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.mobile-menu.active { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 300;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+.mobile-menu a:hover { opacity: 1; }
+.mobile-menu .messenger-btn {
+  width: 52px; height: 52px;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--plum-900);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  opacity: 0.55;
+  transform: scale(1.08);
+  transition: transform 0.1s linear;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(61,22,56,0.85) 0%, rgba(107,53,101,0.5) 50%, rgba(61,22,56,0.7) 100%),
+    linear-gradient(to top, var(--plum-900) 0%, transparent 40%);
+  z-index: 2;
+}
+.hero-blob-1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  top: -100px; right: -100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217,191,234,0.3), transparent 70%);
+  filter: blur(100px);
+  z-index: 2;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+.hero-blob-2 {
+  position: absolute;
+  width: 400px; height: 400px;
+  bottom: -50px; left: -50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,53,101,0.5), transparent 70%);
+  filter: blur(80px);
+  z-index: 2;
+  animation: blobFloat 10s ease-in-out infinite reverse;
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -20px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 140px 0 80px;
+  width: 100%;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--lilac-300);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--lilac-300);
+}
+
+/* Carousel */
+.hero-carousel {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.hero-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s var(--ease-out-expo);
+  pointer-events: none;
+}
+.hero-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.hero-slide h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  max-width: 700px;
+}
+.hero-slide h1 em {
+  font-style: italic;
+  color: var(--lilac-300);
+}
+.hero-slide .hero-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: rgba(217,191,234,0.15);
+  border: 1px solid rgba(217,191,234,0.25);
+  border-radius: 60px;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--lilac-300);
+  backdrop-filter: blur(10px);
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+/* Carousel dots */
+.hero-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.hero-dot {
+  width: 32px; height: 3px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s;
+  padding: 0;
+}
+.hero-dot.active {
+  width: 48px;
+  background: var(--lilac-300);
+}
+
+/* Hero stats bar */
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat-value {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: #fff;
+}
+.hero-stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.5); opacity: 0.3; }
+}
+
+/* ============================================
+   CATEGORIES SECTION
+   ============================================ */
+.categories {
+  padding: 120px 0;
+  position: relative;
+  background: var(--base-warm);
+  overflow: hidden;
+}
+.categories-blob {
+  position: absolute;
+  width: 500px; height: 500px;
+  top: 10%; right: -150px;
+  background: radial-gradient(circle, var(--lilac-100), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.6;
+  z-index: 0;
+}
+.categories-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+.categories-header .section-subtitle {
+  margin: 0 auto;
+}
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+.category-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  group: true;
+}
+.category-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out-expo);
+}
+.category-card:hover .category-card-img {
+  transform: scale(1.08);
+}
+.category-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.1) 50%, transparent 100%);
+  z-index: 1;
+  transition: opacity 0.5s;
+}
+.category-card:hover::after {
+  background: linear-gradient(to top, rgba(61,22,56,0.85) 0%, rgba(61,22,56,0.2) 50%, transparent 100%);
+}
+.category-card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  z-index: 3;
+  transition: border-color 0.5s;
+  pointer-events: none;
+}
+.category-card:hover .category-card-border {
+  border-color: rgba(217,191,234,0.4);
+}
+.category-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 32px 28px;
+  z-index: 2;
+}
+.category-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--lilac-300);
+  margin-bottom: 8px;
+}
+.category-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.category-card-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s var(--ease-out-expo);
+}
+.category-card:hover .category-card-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+.category-card-arrow {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  transform: translate(-10px, 10px);
+  transition: all 0.5s var(--ease-out-expo);
+}
+.category-card:hover .category-card-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.category-card-arrow svg {
+  width: 18px; height: 18px;
+  color: #fff;
+}
+
+/* ============================================
+   WHY CHOOSE US
+   ============================================ */
+.why {
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+.why-header {
+  margin-bottom: 64px;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.why-card {
+  padding: 40px 32px;
+  border-radius: 20px;
+  background: var(--base);
+  border: 1px solid rgba(217,191,234,0.2);
+  transition: all 0.45s var(--ease-out-quart);
+  position: relative;
+  overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--plum-900), var(--lilac-300));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.why-card:hover::before { transform: scaleX(1); }
+.why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px var(--shadow-plum);
+  border-color: transparent;
+}
+.why-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: var(--lilac-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: background 0.3s;
+}
+.why-card:hover .why-icon { background: var(--plum-900); }
+.why-icon svg {
+  width: 26px; height: 26px;
+  stroke: var(--plum-900);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s;
+}
+.why-card:hover .why-icon svg { stroke: #fff; }
+.why-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.why-card p {
+  font-size: 0.9rem;
+  color: var(--ink-60);
+  line-height: 1.7;
+}
+
+/* ============================================
+   DOCTORS
+   ============================================ */
+.doctors {
+  padding: 120px 0;
+  background: var(--plum-900);
+  position: relative;
+  overflow: hidden;
+}
+.doctors-blob {
+  position: absolute;
+  width: 600px; height: 600px;
+  bottom: -200px; left: -200px;
+  background: radial-gradient(circle, rgba(107,53,101,0.6), transparent 70%);
+  filter: blur(100px);
+}
+.doctors-header {
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+.doctors-header .section-label { color: var(--lilac-300); }
+.doctors-header .section-title { color: #fff; }
+.doctors-header .section-subtitle { color: rgba(255,255,255,0.5); }
+
+.doctors-carousel {
+  position: relative;
+  z-index: 1;
+}
+.doctors-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+.doctors-track::-webkit-scrollbar { display: none; }
+.doctor-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.doctor-card-img-wrap {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+}
+.doctor-card-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: all 0.6s var(--ease-out-expo);
+  filter: saturate(0.3) sepia(0.2) hue-rotate(-10deg);
+}
+.doctor-card:hover .doctor-card-img {
+  filter: saturate(1) sepia(0) hue-rotate(0deg);
+  transform: scale(1.05);
+}
+.doctor-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(61,22,56,0.7) 0%, transparent 50%);
+  transition: opacity 0.5s;
+}
+.doctor-card:hover .doctor-card-overlay {
+  opacity: 0.5;
+}
+.doctor-card-info {
+  position: absolute;
+  bottom: 20px; left: 20px; right: 20px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+}
+.doctor-card-name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.doctor-card-spec {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.5px;
+}
+.doctors-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+.doctors-nav button {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.doctors-nav button:hover {
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.08);
+}
+.doctors-nav button svg {
+  width: 20px; height: 20px;
+  color: #fff;
+}
+
+/* ============================================
+   REVIEWS
+   ============================================ */
+.reviews {
+  padding: 120px 0;
+  background: var(--base-warm);
+  position: relative;
+  overflow: hidden;
+}
+.reviews-blob {
+  position: absolute;
+  width: 500px; height: 500px;
+  top: 20%; left: -200px;
+  background: radial-gradient(circle, var(--lilac-100), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.7;
+}
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.reviews-trust {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  background: var(--base);
+  border-radius: 16px;
+  border: 1px solid rgba(217,191,234,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+.reviews-trust-score {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--plum-900);
+  line-height: 1;
+}
+.reviews-trust-info {
+  font-size: 0.82rem;
+  color: var(--ink-60);
+}
+.reviews-trust-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+.reviews-trust-stars svg {
+  width: 16px; height: 16px;
+  fill: #F5A623;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+.review-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--base);
+  border: 1px solid rgba(217,191,234,0.15);
+  transition: all 0.45s var(--ease-out-quart);
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px var(--shadow-plum);
+}
+.review-card-video {
+  aspect-ratio: 16/10;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.review-card-video img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+.review-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.review-card:hover .review-play {
+  background: var(--plum-900);
+  border-color: var(--plum-900);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.review-play svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+.review-card-body {
+  padding: 24px;
+}
+.review-card-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.review-card-proc {
+  font-size: 0.8rem;
+  color: var(--plum-700);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.review-card-text {
+  font-size: 0.88rem;
+  color: var(--ink-60);
+  line-height: 1.65;
+}
+
+/* ============================================
+   BEFORE / AFTER
+   ============================================ */
+.before-after {
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+.ba-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.ba-header .section-subtitle { margin: 0 auto; }
+
+.ba-slider-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.ba-slider {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 30px 80px var(--shadow-plum-lg);
+}
+.ba-slider-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ba-slider-img.after {
+  clip-path: inset(0 0 0 50%);
+  transition: clip-path 0.05s linear;
+}
+.ba-slider-handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #fff;
+  z-index: 5;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.ba-slider-handle::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.ba-slider-handle::after {
+  content: '⇔';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: var(--plum-900);
+  z-index: 1;
+  font-weight: 700;
+}
+.ba-labels {
+  position: absolute;
+  bottom: 20px; left: 20px; right: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 4;
+  pointer-events: none;
+}
+.ba-label {
+  padding: 8px 20px;
+  border-radius: 60px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.ba-thumbs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+.ba-thumb {
+  width: 72px; height: 54px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  opacity: 0.5;
+}
+.ba-thumb.active {
+  border-color: var(--plum-900);
+  opacity: 1;
+}
+.ba-thumb:hover { opacity: 0.8; }
+.ba-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   STATS
+   ============================================ */
+.stats {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--lilac-100) 0%, var(--base-warm) 50%, var(--lilac-100) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.stats-blob {
+  position: absolute;
+  width: 700px; height: 700px;
+  top: -300px; right: -200px;
+  background: radial-gradient(circle, var(--lilac-300), transparent 70%);
+  filter: blur(120px);
+  opacity: 0.4;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+.stat-item {
+  text-align: center;
+  padding: 40px 20px;
+}
+.stat-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--plum-900);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.stat-value span {
+  font-size: 0.6em;
+  vertical-align: super;
+  color: var(--plum-700);
+}
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--ink-60);
+  line-height: 1.5;
+}
+.stat-divider {
+  width: 32px; height: 2px;
+  background: var(--lilac-300);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+/* ============================================
+   PRICING / FAQ
+   ============================================ */
+.pricing {
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.pricing-header .section-subtitle { margin: 0 auto; }
+.pricing-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(217,191,234,0.25);
+}
+.accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  background: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.accordion-btn:hover { color: var(--plum-900); }
+.accordion-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--lilac-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s var(--ease-out-expo);
+}
+.accordion-item.active .accordion-icon {
+  background: var(--plum-900);
+  transform: rotate(45deg);
+}
+.accordion-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--plum-900);
+  transition: stroke 0.3s;
+}
+.accordion-item.active .accordion-icon svg { stroke: #fff; }
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s var(--ease-out-expo);
+}
+.accordion-content-inner {
+  padding: 0 0 24px;
+}
+.accordion-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 0.92rem;
+  color: var(--ink-80);
+}
+.accordion-price-row span:last-child {
+  font-weight: 600;
+  color: var(--plum-900);
+}
+
+.pricing-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ============================================
+   CONTACT / FOOTER
+   ============================================ */
+.contact {
+  padding: 120px 0 60px;
+  background: var(--plum-900);
+  position: relative;
+  overflow: hidden;
+}
+.contact-blob {
+  position: absolute;
+  width: 500px; height: 500px;
+  bottom: -200px; right: -100px;
+  background: radial-gradient(circle, rgba(107,53,101,0.5), transparent 70%);
+  filter: blur(100px);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  position: relative;
+  z-index: 1;
+}
+.contact-info h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.contact-info p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.contact-detail-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-detail-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--lilac-300);
+  fill: none;
+  stroke-width: 1.5;
+}
+.contact-detail-text {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+}
+.contact-detail-text strong {
+  display: block;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.contact-messengers {
+  display: flex;
+  gap: 12px;
+}
+.contact-msg-btn {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.35s var(--ease-out-quart);
+  cursor: pointer;
+}
+.contact-msg-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+.contact-msg-btn svg { width: 24px; height: 24px; }
+
+/* Contact form */
+.contact-form-wrap {
+  padding: 48px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+}
+.contact-form-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.contact-form-sub {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 32px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  outline: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--lilac-300);
+  background: rgba(255,255,255,0.1);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-group select option {
+  background: var(--plum-900);
+  color: #fff;
+}
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  font-size: 0.95rem;
+  border-radius: 14px;
+}
+.form-consent {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.footer-copy {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--lilac-300); }
+
+/* ============================================
+   FLOATING CTA
+   ============================================ */
+.floating-cta {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.floating-btn {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transition: all 0.35s var(--ease-out-quart);
+  border: none;
+  cursor: pointer;
+}
+.floating-btn:hover {
+  transform: scale(1.12);
+}
+.floating-btn.wa { background: #25D366; }
+.floating-btn.tg { background: #2AABEE; }
+.floating-btn.phone { background: var(--plum-900); }
+.floating-btn svg { width: 24px; height: 24px; fill: #fff; }
+
+/* ============================================
+   MAP PLACEHOLDER
+   ============================================ */
+.map-section {
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.map-section iframe {
+  width: 100%; height: 100%;
+  border: none;
+  filter: saturate(0.3) contrast(1.1);
+  transition: filter 0.5s;
+}
+.map-section:hover iframe {
+  filter: saturate(0.6) contrast(1.05);
+}
+.map-overlay {
+  position: absolute;
+  top: 32px; left: 32px;
+  padding: 24px 32px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  z-index: 2;
+}
+.map-overlay h4 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  color: var(--plum-900);
+}
+.map-overlay p {
+  font-size: 0.85rem;
+  color: var(--ink-60);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  
+  .hero-carousel { height: 180px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .hero-stat-value { font-size: 1.5rem; }
+  
+  .categories-grid { grid-template-columns: 1fr; }
+  .category-card { aspect-ratio: 16/10; }
+  
+  .why-grid { grid-template-columns: 1fr; }
+  
+  .reviews-grid { grid-template-columns: 1fr; }
+  .reviews-header { flex-direction: column; align-items: flex-start; }
+  
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .stat-item { padding: 24px 16px; }
+  
+  .doctor-card { flex: 0 0 260px; }
+  
+  .contact-form-wrap { padding: 32px 24px; }
+  
+  .map-overlay {
+    top: 16px; left: 16px; right: 16px;
+    padding: 16px 20px;
+  }
+  
+  .footer-bottom { flex-direction: column; text-align: center; }
+  
+  .floating-cta { bottom: 16px; right: 16px; }
+  .floating-btn { width: 50px; height: 50px; }
+}
+
+@media (max-width: 480px) {
+  .hero-slide h1 { font-size: 2rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .nav-cta { display: none; }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--base-warm); }
+::-webkit-scrollbar-thumb { background: var(--lilac-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--plum-700); }
+
+/* ============================================
+   LOADING
+   ============================================ */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--plum-900);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.loader-logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #fff;
+  letter-spacing: 6px;
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-logo">ESTET PLASTIC</div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">ESTET PLASTIC</span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="#categories">Операции</a>
+      <a href="#doctors">Врачи</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#before-after">Результаты</a>
+      <a href="#pricing">Стоимость</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    
+    <div class="nav-messengers">
+      <a href="tel:+79281234567" class="messenger-btn" title="Позвонить">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/79281234567" class="messenger-btn" title="WhatsApp" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#25D366">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+      <a href="https://t.me/estetplastic" class="messenger-btn" title="Telegram" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#2AABEE">
+          <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+      </a>
+      <a href="#contact" class="btn btn-glass nav-cta">Записаться</a>
+    </div>
+    
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#categories" onclick="closeMobile()">Операции</a>
+  <a href="#doctors" onclick="closeMobile()">Врачи</a>
+  <a href="#reviews" onclick="closeMobile()">Отзывы</a>
+  <a href="#before-after" onclick="closeMobile()">Результаты</a>
+  <a href="#pricing" onclick="closeMobile()">Стоимость</a>
+  <a href="#contact" onclick="closeMobile()">Контакты</a>
+  <div style="display:flex;gap:12px;margin-top:20px">
+    <a href="tel:+79281234567" class="messenger-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
+    <a href="https://wa.me/79281234567" class="messenger-btn"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    <a href="https://t.me/estetplastic" class="messenger-btn"><svg viewBox="0 0 24 24" fill="#2AABEE"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+  </div>
+</div>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img" id="heroBg" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80" alt="Клиника Estet Plastic" loading="eager">
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-eyebrow reveal">Клиника пластической хирургии · Махачкала</div>
+    
+    <div class="hero-carousel" id="heroCarousel">
+      <div class="hero-slide active" data-slide="0">
+        <h1>Ринопластика<br>от <em>12 700 ₽</em>/мес</h1>
+        <div class="hero-price">✨ Рассрочка 0% до 24 месяцев</div>
+      </div>
+      <div class="hero-slide" data-slide="1">
+        <h1>Блефаропластика<br>со скидкой <em>20%</em></h1>
+        <div class="hero-price">🔥 Только до конца месяца</div>
+      </div>
+      <div class="hero-slide" data-slide="2">
+        <h1>Подтяжка лица<br>от <em>89 000 ₽</em></h1>
+        <div class="hero-price">⭐ Включая анестезию и стационар</div>
+      </div>
+      <div class="hero-slide" data-slide="3">
+        <h1>Увеличение груди<br>от <em>15 400 ₽</em>/мес</h1>
+        <div class="hero-price">💎 Импланты Mentor / Motiva</div>
+      </div>
+    </div>
+    
+    <p class="hero-desc reveal reveal-delay-1">Премиальная клиника пластической хирургии на Северном Кавказе. Более 3 000 успешных операций, команда сертифицированных хирургов и безупречный сервис.</p>
+    
+    <div class="hero-actions reveal reveal-delay-2">
+      <a href="#contact" class="btn btn-primary">Бесплатная консультация</a>
+      <a href="#categories" class="btn btn-glass">Наши операции</a>
+    </div>
+    
+    <div class="hero-dots" id="heroDots">
+      <button class="hero-dot active" data-slide="0"></button>
+      <button class="hero-dot" data-slide="1"></button>
+      <button class="hero-dot" data-slide="2"></button>
+      <button class="hero-dot" data-slide="3"></button>
+    </div>
+    
+    <div class="hero-stats reveal reveal-delay-3">
+      <div>
+        <div class="hero-stat-value">3 000+</div>
+        <div class="hero-stat-label">операций выполнено</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">12 лет</div>
+        <div class="hero-stat-label">на рынке</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">5.0</div>
+        <div class="hero-stat-label">рейтинг Продокторов</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">42%</div>
+        <div class="hero-stat-label">пациентов — мужчины</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="hero-scroll">
+    <span>Листайте</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     CATEGORIES
+     ============================================ -->
+<section class="categories" id="categories">
+  <div class="categories-blob"></div>
+  <div class="container">
+    <div class="categories-header reveal">
+      <div class="section-label">Направления</div>
+      <h2 class="section-title">Пластика, которая<br>меняет жизнь</h2>
+      <p class="section-subtitle">Каждое направление — это специализация наших хирургов с многолетним опытом и сотнями успешных операций</p>
+    </div>
+    
+    <div class="categories-grid">
+      <div class="category-card reveal reveal-delay-1">
+        <img class="category-card-img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80" alt="Ринопластика">
+        <div class="category-card-border"></div>
+        <div class="category-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+        <div class="category-card-content">
+          <div class="category-card-label">Популярное</div>
+          <h3 class="category-card-title">Ринопластика</h3>
+          <p class="category-card-desc">Коррекция формы и размера носа. Открытая и закрытая методики, септопластика.</p>
+        </div>
+      </div>
+      
+      <div class="category-card reveal reveal-delay-2">
+        <img class="category-card-img" src="https://images.unsplash.com/photo-1512290923902-8c9f2c9ca2f0?w=800&q=80" alt="Пластика лица">
+        <div class="category-card-border"></div>
+        <div class="category-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+        <div class="category-card-content">
+          <div class="category-card-label">Омоложение</div>
+          <h3 class="category-card-title">Пластика лица</h3>
+          <p class="category-card-desc">Подтяжка лица, блефаропластика, липофилинг, отопластика.</p>
+        </div>
+      </div>
+      
+      <div class="category-card reveal reveal-delay-3">
+        <img class="category-card-img" src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=80" alt="Маммопластика">
+        <div class="category-card-border"></div>
+        <div class="category-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+        <div class="category-card-content">
+          <div class="category-card-label">Маммопластика</div>
+          <h3 class="category-card-title">Пластика груди</h3>
+          <p class="category-card-desc">Увеличение, уменьшение, подтяжка груди. Импланты премиум-класса.</p>
+        </div>
+      </div>
+      
+      <div class="category-card reveal reveal-delay-4">
+        <img class="category-card-img" src="https://images.unsplash.com/photo-1518577915332-c2a19f149a75?w=800&q=80" alt="Пластика тела">
+        <div class="category-card-border"></div>
+        <div class="category-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+        <div class="category-card-content">
+          <div class="category-card-label">Контуринг</div>
+          <h3 class="category-card-title">Пластика тела</h3>
+          <p class="category-card-desc">Абдоминопластика, липосакция, брахиопластика, глютеопластика.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WHY CHOOSE US
+     ============================================ -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-header reveal">
+      <div class="section-label">Преимущества</div>
+      <h2 class="section-title">Почему выбирают<br>Estet Plastic</h2>
+      <p class="section-subtitle">Мы объединяем экспертизу мирового уровня, передовые технологии и индивидуальный подход к каждому пациенту</p>
+    </div>
+    
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 15l-2 5h4l-2-5z"/><circle cx="12" cy="9" r="6"/><path d="M9 9h6M12 6v6"/></svg>
+        </div>
+        <h3>Сертифицированные хирурги</h3>
+        <p>Все наши хирурги имеют высшую квалификационную категорию, международные сертификаты и стаж от 10 лет</p>
+      </div>
+      
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/><circle cx="15" cy="15" r="2"/></svg>
+        </div>
+        <h3>Собственная операционная</h3>
+        <p>Оснащение по стандартам JCI: наркозно-дыхательная аппаратура GE, мониторинг жизненных показателей 24/7</p>
+      </div>
+      
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>3 000+ счастливых пациентов</h3>
+        <p>Каждый пациент получает персонального куратора, поддержку на всех этапах и гарантию результата</p>
+      </div>
+      
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>3D-моделирование результата</h3>
+        <p>Увидьте будущий результат ещё до операции с помощью системы 3D-визуализации Crisalix</p>
+      </div>
+      
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Рассрочка 0% до 24 мес.</h3>
+        <p>Гибкие программы рассрочки без переплат от банков-партнёров. Первый платёж через месяц</p>
+      </div>
+      
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Комфортный стационар</h3>
+        <p>Индивидуальные палаты премиум-класса, ресторанное питание и круглосуточный уход медперсонала</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     DOCTORS
+     ============================================ -->
+<section class="doctors" id="doctors">
+  <div class="doctors-blob"></div>
+  <div class="container">
+    <div class="doctors-header reveal">
+      <div class="section-label">Команда</div>
+      <h2 class="section-title">Наши специалисты</h2>
+      <p class="section-subtitle">Пластические хирурги с международным опытом и безупречной репутацией</p>
+    </div>
+    
+    <div class="doctors-carousel reveal">
+      <div class="doctors-track" id="doctorsTrack">
+        <div class="doctor-card">
+          <div class="doctor-card-img-wrap">
+            <img class="doctor-card-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80" alt="Доктор">
+            <div class="doctor-card-overlay"></div>
+          </div>
+          <div class="doctor-card-info">
+            <div class="doctor-card-name">Ахмед Магомедов</div>
+            <div class="doctor-card-spec">Пластический хирург · 15 лет опыта</div>
+          </div>
+        </div>
+        
+        <div class="doctor-card">
+          <div class="doctor-card-img-wrap">
+            <img class="doctor-card-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80" alt="Доктор">
+            <div class="doctor-card-overlay"></div>
+          </div>
+          <div class="doctor-card-info">
+            <div class="doctor-card-name">Айшат Гасанова</div>
+            <div class="doctor-card-spec">Пластический хирург · 12 лет опыта</div>
+          </div>
+        </div>
+        
+        <div class="doctor-card">
+          <div class="doctor-card-img-wrap">
+            <img class="doctor-card-img" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80" alt="Доктор">
+            <div class="doctor-card-overlay"></div>
+          </div>
+          <div class="doctor-card-info">
+            <div class="doctor-card-name">Руслан Алиев</div>
+            <div class="doctor-card-spec">Челюстно-лицевой хирург · 18 лет</div>
+          </div>
+        </div>
+        
+        <div class="doctor-card">
+          <div class="doctor-card-img-wrap">
+            <img class="doctor-card-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964f137?w=600&q=80" alt="Доктор">
+            <div class="doctor-card-overlay"></div>
+          </div>
+          <div class="doctor-card-info">
+            <div class="doctor-card-name">Марина Исаева</div>
+            <div class="doctor-card-spec">Анестезиолог-реаниматолог · 20 лет</div>
+          </div>
+        </div>
+        
+        <div class="doctor-card">
+          <div class="doctor-card-img-wrap">
+            <img class="doctor-card-img" src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80" alt="Доктор">
+            <div class="doctor-card-overlay"></div>
+          </div>
+          <div class="doctor-card-info">
+            <div class="doctor-card-name">Тимур Шамилов</div>
+            <div class="doctor-card-spec">Пластический хирург · 10 лет опыта</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="doctors-nav">
+        <button onclick="scrollDoctors(-1)" aria-label="Назад">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button onclick="scrollDoctors(1)" aria-label="Вперёд">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     REVIEWS
+     ============================================ -->
+<section class="reviews" id="reviews">
+  <div class="reviews-blob"></div>
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <div class="section-label">Отзывы</div>
+        <h2 class="section-title">Истории наших<br>пациентов</h2>
+      </div>
+      <div class="reviews-trust">
+        <div class="reviews-trust-score">5.0</div>
+        <div>
+          <div class="reviews-trust-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="reviews-trust-info">328 отзывов на Продокторов</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-card-video">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80" alt="Видео-отзыв">
+          <div class="review-play">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="review-card-body">
+          <div class="review-card-name">Наталья</div>
+          <div class="review-card-proc">Ринопластика · Июнь 2025</div>
+          <p class="review-card-text">«Наталья уезжает домой после ринопластики — смотрите, как изменился профиль уже через 3 недели после операции!»</p>
+        </div>
+      </div>
+      
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-card-video">
+          <img src="https://images.unsplash.com/photo-15068635300-7e2720fea62f?w=600&q=80" alt="Видео-отзыв">
+          <div class="review-play">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="review-card-body">
+          <div class="review-card-name">Мадина</div>
+          <div class="review-card-proc">Блефаропластика · Март 2025</div>
+          <p class="review-card-text">«Мне 42, и я выгляжу на 30. Блефаропластика убрала нависшие веки — взгляд стал открытым и молодым.»</p>
+        </div>
+      </div>
+      
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-card-video">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Видео-отзыв">
+          <div class="review-play">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="review-card-body">
+          <div class="review-card-name">Арслан</div>
+          <div class="review-card-proc">Ринопластика · Январь 2025</div>
+          <p class="review-card-text">«Долго сомневался — мужчине делать пластику. Но результат превзошёл ожидания. Дышу свободно, выгляжу гармонично.»</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BEFORE / AFTER
+     ============================================ -->
+<section class="before-after" id="before-after">
+  <div class="container">
+    <div class="ba-header reveal">
+      <div class="section-label">Результаты</div>
+      <h2 class="section-title">До и после</h2>
+      <p class="section-subtitle">Перетащите слайдер, чтобы увидеть разницу. Реальные результаты наших пациентов.</p>
+    </div>
+    
+    <div class="ba-slider-container reveal">
+      <div class="ba-slider" id="baSlider">
+        <img class="ba-slider-img before" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80" alt="До" id="baBefore">
+        <img class="ba-slider-img after" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1200&q=80" alt="После" id="baAfter">
+        <div class="ba-slider-handle" id="baHandle"></div>
+        <div class="ba-labels">
+          <span class="ba-label">До</span>
+          <span class="ba-label">После</span>
+        </div>
+      </div>
+      
+      <div class="ba-thumbs">
+        <div class="ba-thumb active" data-before="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80" data-after="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=60" alt="">
+        </div>
+        <div class="ba-thumb" data-before="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80" data-after="https://images.unsplash.com/photo-1531746020798-e6953c6e28e0?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e28e0?w=100&q=60" alt="">
+        </div>
+        <div class="ba-thumb" data-before="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&q=80" data-after="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=60" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     STATS
+     ============================================ -->
+<section class="stats" id="stats">
+  <div class="stats-blob"></div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-value" data-target="3000">0<span>+</span></div>
+        <div class="stat-label">успешных операций<br>за всё время</div>
+        <div class="stat-divider"></div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-value" data-target="42">0<span>%</span></div>
+        <div class="stat-label">пациентов —<br>мужчины</div>
+        <div class="stat-divider"></div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-value" data-target="98">0<span>%</span></div>
+        <div class="stat-label">пациентов<br>рекомендуют нас</div>
+        <div class="stat-divider"></div>
+      </div>
+      <div class="stat-item reveal reveal-delay-4">
+        <div class="stat-value" data-target="12">0</div>
+        <div class="stat-label">лет безупречной<br>репутации</div>
+        <div class="stat-divider"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PRICING / FAQ
+     ============================================ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <div class="section-label">Стоимость</div>
+      <h2 class="section-title">Прозрачные цены</h2>
+      <p class="section-subtitle">Окончательная стоимость определяется на бесплатной консультации. Все цены включают анестезию и пребывание в стационаре.</p>
+    </div>
+    
+    <div class="pricing-content reveal">
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>👃 Ринопластика</span>
+          <div class="accordion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-content-inner">
+            <div class="accordion-price-row"><span>Первичная ринопластика</span><span>от 150 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Повторная ринопластика</span><span>от 200 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Септопластика</span><span>от 80 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Риносептопластика</span><span>от 190 000 ₽</span></div>
+            <div class="accordion-price-row"><span>В рассрочку от</span><span>12 700 ₽/мес</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>👁 Блефаропластика</span>
+          <div class="accordion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-content-inner">
+            <div class="accordion-price-row"><span>Верхняя блефаропластика</span><span>от 60 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Нижняя блефаропластика</span><span>от 70 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Круговая блефаропластика</span><span>от 110 000 ₽</span></div>
+            <div class="accordion-price-row"><span>В рассрочку от</span><span>5 800 ₽/мес</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>💎 Маммопластика</span>
+          <div class="accordion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-content-inner">
+            <div class="accordion-price-row"><span>Увеличение (импланты Mentor)</span><span>от 220 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Увеличение (импланты Motiva)</span><span>от 280 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Подтяжка груди</span><span>от 140 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Редукционная маммопластика</span><span>от 170 000 ₽</span></div>
+            <div class="accordion-price-row"><span>В рассрочку от</span><span>15 400 ₽/мес</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>✨ Подтяжка лица</span>
+          <div class="accordion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-content-inner">
+            <div class="accordion-price-row"><span>SMAS-лифтинг</span><span>от 250 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Эндоскопическая подтяжка</span><span>от 180 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Подтяжка шеи</span><span>от 120 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Липофилинг лица</span><span>от 80 000 ₽</span></div>
+            <div class="accordion-price-row"><span>В рассрочку от</span><span>8 900 ₽/мес</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span>🏋️ Пластика тела</span>
+          <div class="accordion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="accordion-content">
+          <div class="accordion-content-inner">
+            <div class="accordion-price-row"><span>Абдоминопластика</span><span>от 180 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Липосакция (1 зона)</span><span>от 50 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Брахиопластика</span><span>от 120 000 ₽</span></div>
+            <div class="accordion-price-row"><span>Глютеопластика</span><span>от 200 000 ₽</span></div>
+            <div class="accordion-price-row"><span>В рассрочку от</span><span>9 600 ₽/мес</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="pricing-cta reveal">
+      <a href="#contact" class="btn btn-primary" style="padding:18px 48px;font-size:1rem;">📋 Подробный прайс-лист</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     MAP
+     ============================================ -->
+<div class="map-section">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2893.1!2d47.4899!3d42.9769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDU4JzM2LjgiTiA0N8KwMjknMjMuNiJF!5e0!3m2!1sru!2sru!4v1" loading="lazy" title="Карта"></iframe>
+  <div class="map-overlay">
+    <h4>ESTET PLASTIC</h4>
+    <p>пр. Акушинского, 146, Махачкала</p>
+  </div>
+</div>
+
+<!-- ============================================
+     CONTACT
+     ============================================ -->
+<section class="contact" id="contact">
+  <div class="contact-blob"></div>
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label" style="color:var(--lilac-300)">Контакты</div>
+        <h2>Запишитесь на<br>бесплатную консультацию</h2>
+        <p>Оставьте заявку — наш менеджер свяжется с вами в течение 15 минут, подберёт удобное время и ответит на все вопросы.</p>
+        
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Адрес</strong>
+              пр. Акушинского, 146, Махачкала
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Телефон</strong>
+              +7 (928) 123-45-67
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Режим работы</strong>
+              Пн–Сб: 9:00 – 20:00
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-messengers">
+          <a href="https://wa.me/79281234567" class="contact-msg-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://t.me/estetplastic" class="contact-msg-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="#2AABEE"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <a href="tel:+79281234567" class="contact-msg-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="contact-form-wrap reveal reveal-delay-2">
+        <h3 class="contact-form-title">Записаться на приём</h3>
+        <p class="contact-form-sub">Заполните форму — мы перезвоним за 15 минут</p>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>Ваше имя</label>
+            <input type="text" placeholder="Как к вам обращаться?" required>
+          </div>
+          <div class="form-group">
+            <label>Телефон</label>
+            <input type="tel" placeholder="+7 (___) ___-__-__" required>
+          </div>
+          <div class="form-group">
+            <label>Интересующая услуга</label>
+            <select>
+              <option value="">Выберите направление</option>
+              <option>Ринопластика</option>
+              <option>Блефаропластика</option>
+              <option>Маммопластика</option>
+              <option>Подтяжка лица</option>
+              <option>Абдоминопластика</option>
+              <option>Липосакция</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Комментарий</label>
+            <textarea placeholder="Расскажите о ваших пожеланиях..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Отправить заявку</button>
+          <p class="form-consent">Нажимая кнопку, вы соглашаетесь с <a href="#" style="color:var(--lilac-300);text-decoration:underline">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных</p>
+        </form>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ESTET PLASTIC. Все права защищены. Лицензия №ЛО-05-01-004123</div>
+      <div class="footer-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Правовая информация</a>
+        <a href="#">Карта сайта</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+  <a href="https://wa.me/79281234567" class="floating-btn wa" target="_blank" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a href="https://t.me/estetplastic" class="floating-btn tg" target="_blank" title="Telegram">
+    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  </a>
+  <a href="tel:+79281234567" class="floating-btn phone" title="Позвонить">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </a>
+</div>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+// ---- Page Loader ----
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('pageLoader').classList.add('hidden');
+  }, 600);
+});
+
+// ---- Navbar scroll ----
+const navbar = document.getElementById('navbar');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ---- Mobile menu ----
+const burger = document.getElementById('navBurger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+function closeMobile() {
+  burger.classList.remove('active');
+  mobileMenu.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ---- Hero carousel ----
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+let currentSlide = 0;
+let slideInterval;
+
+function goToSlide(index) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = index;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  goToSlide((currentSlide + 1) % slides.length);
+}
+
+function startCarousel() {
+  slideInterval = setInterval(nextSlide, 5000);
+}
+
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    goToSlide(parseInt(dot.dataset.slide));
+    startCarousel();
+  });
+});
+
+startCarousel();
+
+// ---- Parallax hero bg ----
+const heroBg = document.getElementById('heroBg');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  if (scrolled < window.innerHeight) {
+    heroBg.style.transform = `scale(1.08) translateY(${scrolled * 0.3}px)`;
+  }
+});
+
+// ---- Intersection Observer for reveal ----
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ---- Counter animation ----
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+      let current = 0;
+      const increment = target / 60;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.innerHTML = Math.floor(current).toLocaleString('ru-RU') + suffix;
+      }, 25);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-value[data-target]').forEach(el => counterObserver.observe(el));
+
+// ---- Doctors carousel ----
+function scrollDoctors(dir) {
+  const track = document.getElementById('doctorsTrack');
+  const cardWidth = track.querySelector('.doctor-card').offsetWidth + 24;
+  track.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+}
+
+// ---- Before/After slider ----
+const baSlider = document.getElementById('baSlider');
+const baAfter = document.getElementById('baAfter');
+const baHandle = document.getElementById('baHandle');
+let isDragging = false;
+
+function updateSlider(x) {
+  const rect = baSlider.getBoundingClientRect();
+  let pos = (x - rect.left) / rect.width;
+  pos = Math.max(0.05, Math.min(0.95, pos));
+  baAfter.style.clipPath = `inset(0 0 0 ${pos * 100}%)`;
+  baHandle.style.left = `${pos * 100}%`;
+}
+
+baSlider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+baSlider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+window.addEventListener('mouseup', () => isDragging = false);
+window.addEventListener('touchend', () => isDragging = false);
+
+// BA thumbs
+document.querySelectorAll('.ba-thumb').forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    document.querySelectorAll('.ba-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    document.getElementById('baBefore').src = thumb.dataset.before;
+    document.getElementById('baAfter').src = thumb.dataset.after;
+    baAfter.style.clipPath = 'inset(0 0 0 50%)';
+    baHandle.style.left = '50%';
+  });
+});
+
+// ---- Accordion ----
+function toggleAccordion(btn) {
+  const item = btn.parentElement;
+  const content = item.querySelector('.accordion-content');
+  const isActive = item.classList.contains('active');
+  
+  // Close all
+  document.querySelectorAll('.accordion-item').forEach(ai => {
+    ai.classList.remove('active');
+    ai.querySelector('.accordion-content').style.maxHeight = '0';
+  });
+  
+  // Open clicked if was closed
+  if (!isActive) {
+    item.classList.add('active');
+    content.style.maxHeight = content.scrollHeight + 'px';
+  }
+}
+
+// ---- Form submit ----
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Заявка отправлена!';
+  btn.style.background = '#2D8B4E';
+  setTimeout(() => {
+    btn.textContent = 'Отправить заявку';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// ---- Smooth scroll for anchor links ----
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
